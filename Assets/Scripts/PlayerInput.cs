@@ -12,6 +12,10 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField]
     public float rotationSpeed = 5f;
+    [SerializeField]
+    public float cameraSmoothFactor = 0.01f;
+    [SerializeField]
+    public Transform cameraFollowTarget = null;
 
     private void Awake()
     {
@@ -26,18 +30,31 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
+        RotateCamera();
+        UpdateCameraPosition();
+    }
+
+    private void UpdateCameraPosition()
+    {
+        Vector3 newCamerPos = new Vector3(
+            cameraFollowTarget.transform.position.x,
+            cameraFollowTarget.transform.position.y,
+            transform.position.z
+        );
+        float distance = Vector3.Distance(newCamerPos, transform.position);
+        
+        transform.position = Vector3.Lerp(transform.position, newCamerPos, Mathf.Min(distance * cameraSmoothFactor, 1f));
     }
 
     private void FixedUpdate()
     {
         RotateGravity();
-        RotateCamera();
+        
     }
 
     private void RotateGravity()
     {
         Physics2D.gravity = Quaternion.Euler(0, 0, horizontalInput * Time.fixedDeltaTime * rotationSpeed) * Physics2D.gravity;
-        Debug.Log(Physics2D.gravity.magnitude);
     }
 
     private void RotateCamera()
