@@ -14,6 +14,7 @@ public class ReleaseInk : MonoBehaviour
     private int lineSize = 1;
     private int inkQuantity = 100;
     private int currentInkQuantity;
+    [SerializeField]
     private int releaseQuantity = 5;
     private float scaleDownFactor;
 
@@ -49,7 +50,6 @@ public class ReleaseInk : MonoBehaviour
     private void ReleaseInkAtCurrentPosition()
     {
         currentInkQuantity -= releaseQuantity;
-        Debug.Log(currentInkQuantity);
         inkParticles.Play();
         if (currentInkQuantity <= 0)
         {

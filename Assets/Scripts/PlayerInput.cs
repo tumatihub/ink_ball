@@ -18,9 +18,13 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+#if UNITY_ANDROID
+        horizontalInput = Input.acceleration.x;
+        verticalInput = Input.acceleration.y;
+#else 
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
+#endif
     }
 
 

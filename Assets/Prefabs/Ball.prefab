@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46abed7f5b75a141a035985e9af2568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputForce: 3
+  inputForce: 4
 --- !u!198 &1462267085
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5025,3 +5025,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceBetweenInks: 0.5
+  releaseQuantity: 5

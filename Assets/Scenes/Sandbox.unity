@@ -670,6 +670,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1462267082, guid: 4c4fef09d46a7a04582717df4e584fa1, type: 3}
+      propertyPath: releaseQuantity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4377440693948036572, guid: 4c4fef09d46a7a04582717df4e584fa1, type: 3}
       propertyPath: m_Name
       value: Ball
