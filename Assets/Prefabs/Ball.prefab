@@ -5025,4 +5025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceBetweenInks: 0.5
-  releaseQuantity: 5
+  releaseQuantity: 2
+  OnReleaseAllInk:
+    m_PersistentCalls:
+      m_Calls: []

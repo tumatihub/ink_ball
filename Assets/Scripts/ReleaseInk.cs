@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(Ball))]
 public class ReleaseInk : MonoBehaviour
 {
 
+    private Ball ball;
     private ParticleSystem inkParticles = null;
     private Vector3 lastInkPosition = Vector3.zero;
     [SerializeField]
@@ -18,8 +21,11 @@ public class ReleaseInk : MonoBehaviour
     private int releaseQuantity = 5;
     private float scaleDownFactor;
 
+    public UnityEvent OnReleaseAllInk;
+
     private void Awake()
     {
+        ball = GetComponent<Ball>();
         inkParticles = GetComponent<ParticleSystem>();
         currentInkQuantity = inkQuantity;
         scaleDownFactor = (float)releaseQuantity / (float)inkQuantity / 2f;
@@ -49,16 +55,17 @@ public class ReleaseInk : MonoBehaviour
 
     private void ReleaseInkAtCurrentPosition()
     {
-        currentInkQuantity -= releaseQuantity;
+        currentInkQuantity = Mathf.Max(currentInkQuantity - releaseQuantity, 0);
         inkParticles.Play();
         if (currentInkQuantity <= 0)
         {
+            OnReleaseAllInk?.Invoke();
             RemoveBall();
         }
     }
 
     private void RemoveBall()
     {
-        throw new NotImplementedException();
+        ball.Die();
     }
 }
