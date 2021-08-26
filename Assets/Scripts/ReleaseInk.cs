@@ -44,6 +44,25 @@ public class ReleaseInk : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("InkRefill"))
+        {
+            Refill();
+        }
+    }
+
+    private void Refill()
+    {
+        currentInkQuantity = inkQuantity;
+        FullSizeBall();
+    }
+
+    private void FullSizeBall()
+    {
+        transform.localScale = Vector3.one;
+    }
+
     private void ResizeBall()
     {
         transform.localScale = new Vector3(
